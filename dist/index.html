@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>SwsRating demo</title>
+</head>
+<body>
+
+<h1>SwsRating demo</h1>
+
+<h2>default</h2>
+<div id="demo1"></div>
+
+<h2>set rate 3.5</h2>
+<div id="demo2"></div>
+
+<h2>display value</h2>
+<div id="demo3"></div>
+
+<h2>set readonly</h2>
+<div id="demo4"></div>
+
+<h2>set color, background color, stroke color, tabIndex, max and size</h2>
+<div id="demo5"></div>
+
+<h2>add event handler</h2>
+<div id="demo6"></div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mithril/1.1.5/mithril.min.js"></script>
+<script src="./sws-rating.min.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+    m.mount(document.getElementById('demo1'), {
+      view: function() {
+        return m(SwsRating);
+      }
+    });
+
+    m.mount(document.getElementById('demo2'), {
+      view: function() {
+        return m(SwsRating, {
+          rate: 3.5
+        });
+      }
+    });
+
+    m.mount(document.getElementById('demo3'), {
+      view: function() {
+        return m(SwsRating, {
+          rate: 3.8,
+          hasValue: true
+        });
+      }
+    });
+
+    m.mount(document.getElementById('demo4'), {
+      view: function() {
+        return m(SwsRating, {
+          rate: 1.7,
+          readonly: true
+        });
+      }
+    });
+
+    m.mount(document.getElementById('demo5'), {
+      view: function() {
+        return m(SwsRating, {
+          max: 10,
+          rate: 7.3,
+          color: '00cc99',
+          bgColor: 'ffffff',
+          stroke: '006633',
+          size: 50,
+          tabIndex: 1
+        });
+      }
+    });
+
+    let updateText = '&nbsp;';
+    m.mount(document.getElementById('demo6'), {
+      view: function() {
+        return m('div', [
+          m(SwsRating, {
+            rate: 2.5,
+            onRateUpdate: function(rateValue) {
+              updateText = 'onRateUpdate called, current value is: ' + rateValue;
+              setTimeout(function() {
+                updateText = '&nbsp;';
+                m.redraw();
+              }, 3000);
+              m.redraw();
+            }
+          }),
+          m('div', m.trust(updateText))
+        ]);
+      }
+    });
+  }, false);
+})();
+</script>
+</body>
+</html>
