@@ -1,4 +1,4 @@
-# SwsRating
+# SwsRating [![Build Status](https://travis-ci.org/inotom/sws-rating.svg?branch=master)](https://travis-ci.org/inotom/sws-rating)
 
 This is a star rating Mithril.js component.
 
